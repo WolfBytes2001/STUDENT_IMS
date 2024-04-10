@@ -2,6 +2,7 @@
 
 Public Class po_approve_list
     Public request_IDPOform As String
+    Public itemIdPO As String
     Public purchaseOrder As New purchaseOrder()
     Private Sub po_approve_list_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTabs("Approved", approved)
@@ -12,8 +13,23 @@ Public Class po_approve_list
     Sub LoadTabs(status As String, dataGrid As DataGridView)
         If Connect() Then
             Try
-                Dim query As String = $"SELECT request_id , requesition_officer, status,approved_by FROM request_form WHERE status = '{status}' AND po_status = 'Pending' ORDER BY 
-                request_form.requested_at DESC"
+                Dim query As String = $"SELECT
+	                                        request_form_cart.item_id, 
+	                                        request_form_cart.request_id, 
+	                                                                                                                                                request_form_cart.item_description, 
+	                                        request_form_cart.measure, 
+	                                        request_form_cart.quantity, 
+	                                        request_form_cart.category, 
+	                                        request_form_cart.price, 
+	                                        request_form_cart.total, 
+	                                        request_form_cart.approved_by
+                                        FROM
+	                                        request_form_cart
+                                        WHERE
+	                                        request_form_cart.approval_status = '{status}' AND
+	                                        request_form_cart.po_status = 'Pending'
+                                        ORDER BY
+	                                        request_form_cart.added_at DESC"
                 Dim dataTable As New DataTable()
 
                 Using cmd As New MySqlCommand(query, DB.con)
@@ -35,14 +51,17 @@ Public Class po_approve_list
         confirmPO()
 
     End Sub
+
     Sub confirmPO()
-        Dim tableName As String = "request_id"
+        Dim item_id As String = "item_id"
+        Dim prColumn As String = "request_id"
 
         If approved.SelectedCells.Count > 0 AndAlso POTAB.SelectedTabPage Is XtraTabPage1 Then
             Dim selectedRowIndex As Integer = approved.SelectedCells(0).RowIndex
-            request_IDPOform = approved.Rows(selectedRowIndex).Cells(tableName).Value?.ToString()
+            request_IDPOform = approved.Rows(selectedRowIndex).Cells(prColumn).Value?.ToString()
+            itemIdPO = approved.Rows(selectedRowIndex).Cells(item_id).Value?.ToString()
 
-            Dim result As DialogResult = MessageBox.Show($"Proceed to generate Purchase order for Request ID: {request_IDPOform}?", "APPROVE", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+            Dim result As DialogResult = MessageBox.Show($"Proceed to generate Purchase order for item ID:{itemIdPO} with Request ID: {request_IDPOform}?", "APPROVE", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
 
             If result = DialogResult.OK Then
                 loadPurchaseOrder()
@@ -67,7 +86,16 @@ Public Class po_approve_list
         If Connect() Then
             Try
                 Dim sql = $"SELECT * FROM request_form WHERE request_id = '{request_IDPOform}'"
-
+                Dim sql2 = $"SELECT * FROM request_form_cart WHERE item_id = '{itemIdPO}'"
+                Using cmd As New MySqlCommand(sql2, con)
+                    Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                    If reader.HasRows Then
+                        While reader.Read()
+                            purchaseOrderForm.itemID = reader("item_id").ToString
+                        End While
+                        reader.Close()
+                    End If
+                End Using
                 Using cmd As New MySqlCommand(sql, con)
                     Dim reader As MySqlDataReader = cmd.ExecuteReader()
 
@@ -116,7 +144,7 @@ Public Class po_approve_list
                                     FROM
                                         request_form_cart
                                     WHERE 
-                                        request_form_cart.request_id = '{request_IDPOform}'"
+                                        request_form_cart.item_id = '{itemIdPO}'"
                 Dim dataTable As New DataTable()
 
                 Using cmd As New MySqlCommand(query, DB.con)

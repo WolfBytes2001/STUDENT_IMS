@@ -90,7 +90,7 @@ Partial Class itemRecievedForm
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.Panel2.BackColor = System.Drawing.Color.Silver
         Me.Panel2.Controls.Add(Me.Label8)
         Me.Panel2.Controls.Add(Me.SimpleButton1)
         Me.Panel2.Controls.Add(Me.PictureBox1)
@@ -148,7 +148,7 @@ Partial Class itemRecievedForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.Label7.BackColor = System.Drawing.Color.Silver
         Me.Label7.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.MidnightBlue
         Me.Label7.Location = New System.Drawing.Point(42, 28)
@@ -231,7 +231,7 @@ Partial Class itemRecievedForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.Label3.BackColor = System.Drawing.Color.Silver
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Gold
         Me.Label3.Location = New System.Drawing.Point(-3, 2)

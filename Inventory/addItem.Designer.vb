@@ -29,7 +29,6 @@ Partial Class addItem
         Me.ADDITEMTAB = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.pendingItems = New Guna.UI.WinForms.GunaDataGridView()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.Panel1.SuspendLayout()
         CType(Me.ADDITEMTAB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ADDITEMTAB.SuspendLayout()
@@ -83,14 +82,14 @@ Partial Class addItem
         Me.ADDITEMTAB.SelectedTabPage = Me.XtraTabPage1
         Me.ADDITEMTAB.Size = New System.Drawing.Size(1081, 434)
         Me.ADDITEMTAB.TabIndex = 3
-        Me.ADDITEMTAB.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.ADDITEMTAB.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.pendingItems)
         Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1079, 403)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1075, 406)
         Me.XtraTabPage1.Text = "PENDING ITEMS"
         '
         'pendingItems
@@ -128,7 +127,7 @@ Partial Class addItem
         Me.pendingItems.RowHeadersVisible = False
         Me.pendingItems.RowHeadersWidth = 51
         Me.pendingItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.pendingItems.Size = New System.Drawing.Size(1079, 403)
+        Me.pendingItems.Size = New System.Drawing.Size(1075, 406)
         Me.pendingItems.TabIndex = 6
         Me.pendingItems.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Indigo
         Me.pendingItems.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(203, Byte), Integer), CType(CType(232, Byte), Integer))
@@ -152,13 +151,6 @@ Partial Class addItem
         Me.pendingItems.ThemeStyle.RowsStyle.Height = 22
         Me.pendingItems.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(127, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(205, Byte), Integer))
         Me.pendingItems.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black
-        '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1079, 403)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'addItem
         '
@@ -184,6 +176,5 @@ Partial Class addItem
     Friend WithEvents Label1 As Label
     Friend WithEvents ADDITEMTAB As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents pendingItems As Guna.UI.WinForms.GunaDataGridView
 End Class

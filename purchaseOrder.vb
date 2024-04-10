@@ -2,6 +2,7 @@
 
 Public Class purchaseOrder
     Public totalPrice As String
+    Public itemID As String
     Private Sub purchaseOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         POID.Text = GeneratePOCode()
         VendorIDinput.Text = GenerateVendorID()
@@ -36,7 +37,7 @@ Public Class purchaseOrder
                     End Using
                     MessageBox.Show("Purchase Order details Saved!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     clearPOform()
-                    Dim updateQuery = $"UPDATE request_form SET po_status = 'Done' WHERE request_id = '{request_id}' "
+                    Dim updateQuery = $"UPDATE request_form_cart SET po_status = 'Done' WHERE item_id = '{itemID}' "
                     Using updateCmd As New MySqlCommand(updateQuery, con)
                         updateCmd.ExecuteNonQuery()
                     End Using

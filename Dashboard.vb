@@ -4,11 +4,16 @@ Imports DevExpress.Skins
 Imports DevExpress.UserSkins
 
 Public Class Dashboard
+    Public viewItems As New view_items
+    Public addItems As New addItem
+    Public po As New po_approve_list
     Private Sub BarToggleSwitchItem1_CheckedChanged(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarToggleSwitchItem1.CheckedChanged
         If BarToggleSwitchItem1.Checked Then
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("DevExpress Dark Style")
+            BarToggleSwitchItem1.Caption = "Light Mode"
         Else
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("DevExpress Style")
+            BarToggleSwitchItem1.Caption = "Dark Mode"
         End If
     End Sub
 
@@ -47,18 +52,25 @@ Public Class Dashboard
 
     Private Sub BarButtonItem5_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem5.ItemClick
         Dim received As New itemRecievedForm
-      
+
 
 
         received.Show()
     End Sub
 
     Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem6.ItemClick
-        Dim add As New addItem
-        add.Dock = DockStyle.Fill
-        MainPanel.Controls.Clear()
-        MainPanel.Controls.Add(add)
 
+        addItems.Dock = DockStyle.Fill
+        MainPanel.Controls.Clear()
+        MainPanel.Controls.Add(addItems)
+
+    End Sub
+
+    Private Sub BarButtonItem7_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem7.ItemClick
+
+        viewItems.Dock = DockStyle.Fill
+        MainPanel.Controls.Clear()
+        MainPanel.Controls.Add(viewItems)
     End Sub
 
 

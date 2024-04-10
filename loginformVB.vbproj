@@ -212,6 +212,18 @@
     <Compile Include="Inventory\itemReview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inventory\updateItem.Designer.vb">
+      <DependentUpon>updateItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\updateItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\view_items.Designer.vb">
+      <DependentUpon>view_items.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\view_items.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="itemRecievedForm.Designer.vb">
       <DependentUpon>itemRecievedForm.vb</DependentUpon>
     </Compile>
@@ -373,6 +385,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\itemReview.resx">
       <DependentUpon>itemReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\updateItem.resx">
+      <DependentUpon>updateItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\view_items.resx">
+      <DependentUpon>view_items.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="itemRecievedForm.resx">
       <DependentUpon>itemRecievedForm.vb</DependentUpon>

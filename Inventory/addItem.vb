@@ -1,4 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Net.Http.Headers
+Imports DevExpress.XtraLayout.Customization
+Imports MySql.Data.MySqlClient
 
 Public Class addItem
     Dim itemId As String
@@ -13,21 +15,23 @@ Public Class addItem
 	                                        request_form_cart.item_id, 
 	                                        request_form_cart.request_id, 
 	                                        request_form_cart.item_description, 
+	                                        po_form.product_brand, 
 	                                        request_form_cart.measure, 
 	                                        request_form_cart.quantity, 
 	                                        request_form_cart.category, 
 	                                        request_form_cart.price, 
 	                                        request_form_cart.total
                                         FROM
-	                                        request_form
-	                                        INNER JOIN
 	                                        request_form_cart
+	                                        INNER JOIN
+	                                        po_form
 	                                        ON 
-		                                        request_form.request_id = request_form_cart.request_id
+		                                        request_form_cart.request_id = po_form.request_id
                                         WHERE
-	                                        request_form.po_status = 'Done' AND
-	                                        request_form_cart.item_status = 'Not added'
-                                    "
+	                                        po_form.order_status = 'Delivered' AND
+	                                        request_form_cart.po_status = 'Done' AND
+	                                        request_form_cart.approval_status = 'Approved' AND
+	                                        request_form_cart.item_status = 'Not added'"
                 Dim dataTable As New DataTable()
 
                 Using cmd As New MySqlCommand(query, DB.con)
@@ -70,7 +74,7 @@ Public Class addItem
 
     Public Sub loadItemReview()
         Dim review As New itemReview()
-        review.inventoryID.Text = GenerateSPORTSInventoryID()
+
 
 
         ' Clear existing controls from MainPanel and add the purchase order form
@@ -80,7 +84,24 @@ Public Class addItem
         ' Load details of the selected request into the purchase order form
         If Connect() Then
             Try
-                Dim sql = $"SELECT * FROM request_form_cart WHERE item_id = '{itemId}'"
+                Dim sql = $"SELECT
+	                        *, 
+	                        request_form_cart.*, 
+	                        request_form_cart.item_id, 
+	                        request_form_cart.request_id, 
+	                        request_form_cart.item_description, 
+	                        po_form.product_brand, 
+	                        request_form_cart.measure, 
+	                        request_form_cart.quantity, 
+	                        request_form_cart.category, 
+	                        request_form_cart.price, 
+	                        request_form_cart.total
+                        FROM
+	                        request_form_cart
+	                        INNER JOIN
+	                        po_form
+	                        ON 
+		                        request_form_cart.request_id = po_form.request_id WHERE item_id = '{itemId}'"
 
                 Using cmd As New MySqlCommand(sql, con)
                     Dim reader As MySqlDataReader = cmd.ExecuteReader()
@@ -89,18 +110,37 @@ Public Class addItem
                         While reader.Read()
                             review.prNumber = reader("request_id").ToString()
                             review.itemIDR.Text = reader("item_id").ToString()
-                            review.descriptionR.Text = reader("item_description").ToString()
+                            review.descriptionR.Text = reader("product_brand").ToString + " " + reader("item_description").ToString()
                             review.categoryR.Text = reader("category").ToString()
                             review.measureR.Text = reader("measure").ToString()
                             review.quantityR.Text = reader("quantity").ToString()
                             review.priceR.Text = reader("price").ToString()
                             review.totalamountR.Text = reader("total").ToString()
 
+                            'generate Inventory ID
+                            If review.categoryR.Text.ToLower = "supplies" Then
+                                review.inventoryID.Text = GenerateSuppliesInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "sports" Then
+                                review.inventoryID.Text = GenerateSPORTSInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "technology" Then
+                                review.inventoryID.Text = GenerateTechInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "furniture" Then
+                                review.inventoryID.Text = GenerateFurnitureInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "equipment" Then
+                                review.inventoryID.Text = GenerateEquipmentInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "tools" Then
+                                review.inventoryID.Text = GenerateToolsInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "instrument" Then
+                                review.inventoryID.Text = GenerateInstrumentInventoryID()
+                            ElseIf review.categoryR.Text.ToLower = "vehicle" Then
+                                review.inventoryID.Text = GenerateVehiclesInventoryID()
+                            End If
                         End While
                     End If
 
                     reader.Close()
                 End Using
+                LoadTabs()
             Catch ex As Exception
                 MessageBox.Show("Error loading purchase order: " & ex.Message)
             End Try

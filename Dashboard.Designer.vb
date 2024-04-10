@@ -45,6 +45,7 @@ Partial Class Dashboard
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.MainPanel = New System.Windows.Forms.Panel()
         Me.BarStaticItem2 = New DevExpress.XtraBars.BarStaticItem()
+        Me.BarButtonItem8 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,9 +53,9 @@ Partial Class Dashboard
         '
         Me.RibbonControl.CaptionBarItemLinks.Add(Me.BarToggleSwitchItem1)
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarToggleSwitchItem1, Me.RibbonControl.ExpandCollapseItem, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BarButtonItem4, Me.BarButtonItem5, Me.BarStaticItem1, Me.BarStaticItem3, Me.BarButtonItem6, Me.BarButtonItem7})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarToggleSwitchItem1, Me.RibbonControl.ExpandCollapseItem, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BarButtonItem4, Me.BarButtonItem5, Me.BarStaticItem1, Me.BarStaticItem3, Me.BarButtonItem6, Me.BarButtonItem7, Me.BarButtonItem8})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 13
+        Me.RibbonControl.MaxItemId = 14
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4})
         Me.RibbonControl.Size = New System.Drawing.Size(1090, 143)
@@ -133,7 +134,7 @@ Partial Class Dashboard
         '
         'BarButtonItem7
         '
-        Me.BarButtonItem7.Caption = "View Items"
+        Me.BarButtonItem7.Caption = "View and Update Items"
         Me.BarButtonItem7.Id = 12
         Me.BarButtonItem7.ImageOptions.SvgImage = CType(resources.GetObject("BarButtonItem7.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.BarButtonItem7.Name = "BarButtonItem7"
@@ -172,10 +173,11 @@ Partial Class Dashboard
         Me.RibbonPageGroup2.ItemLinks.Add(Me.BarButtonItem6)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.BarButtonItem7)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
-        Me.RibbonPageGroup2.Text = "CONTROLS"
+        Me.RibbonPageGroup2.Text = "Stock In"
         '
         'RibbonPageGroup6
         '
+        Me.RibbonPageGroup6.ItemLinks.Add(Me.BarButtonItem8)
         Me.RibbonPageGroup6.Name = "RibbonPageGroup6"
         Me.RibbonPageGroup6.Text = "STOCK OUT"
         '
@@ -211,7 +213,7 @@ Partial Class Dashboard
         '
         Me.RibbonStatusBar.ItemLinks.Add(Me.BarStaticItem1)
         Me.RibbonStatusBar.ItemLinks.Add(Me.BarStaticItem3)
-        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 628)
+        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 648)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
         Me.RibbonStatusBar.Size = New System.Drawing.Size(1090, 31)
@@ -222,7 +224,7 @@ Partial Class Dashboard
         Me.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainPanel.Location = New System.Drawing.Point(0, 143)
         Me.MainPanel.Name = "MainPanel"
-        Me.MainPanel.Size = New System.Drawing.Size(1090, 485)
+        Me.MainPanel.Size = New System.Drawing.Size(1090, 505)
         Me.MainPanel.TabIndex = 2
         '
         'BarStaticItem2
@@ -232,12 +234,21 @@ Partial Class Dashboard
         Me.BarStaticItem2.Id = 8
         Me.BarStaticItem2.Name = "BarStaticItem2"
         '
+        'BarButtonItem8
+        '
+        Me.BarButtonItem8.Caption = "Remove Items"
+        Me.BarButtonItem8.Id = 13
+        Me.BarButtonItem8.ImageOptions.SvgImage = CType(resources.GetObject("BarButtonItem8.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.BarButtonItem8.Name = "BarButtonItem8"
+        Me.BarButtonItem8.RibbonStyle = CType(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large Or DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) _
+            Or DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText), DevExpress.XtraBars.Ribbon.RibbonItemStyles)
+        '
         'Dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1090, 659)
+        Me.ClientSize = New System.Drawing.Size(1090, 679)
         Me.Controls.Add(Me.MainPanel)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
@@ -277,4 +288,5 @@ Partial Class Dashboard
     Friend WithEvents BarButtonItem7 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonPageGroup6 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPageGroup8 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BarButtonItem8 As DevExpress.XtraBars.BarButtonItem
 End Class

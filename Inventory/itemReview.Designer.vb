@@ -319,6 +319,7 @@ Partial Class itemReview
         Me.Controls.Add(Me.GunaLabel1)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "itemReview"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "itemReview"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

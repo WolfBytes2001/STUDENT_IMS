@@ -119,7 +119,7 @@ Partial Class requestApproval
         '
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
         Me.approvalTable.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.approvalTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.approvalTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.approvalTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.approvalTable.BackgroundColor = System.Drawing.Color.White
         Me.approvalTable.BorderStyle = System.Windows.Forms.BorderStyle.None
